@@ -15,4 +15,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Standout_Train.DAL\Standout_Train.DAL.csproj" />
+  </ItemGroup>
+
 </Project>
