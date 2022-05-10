@@ -1,4 +1,5 @@
-﻿using Standout_Train.DAL.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using Standout_Train.DAL.Context;
 using Standout_Train.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -19,48 +20,105 @@ namespace Standout_Train.DAL.AppRepository
         }
         public async Task AddAsync(T entity)
         {
-            if (entity == null)
+            try
             {
-                throw new ArgumentNullException(nameof(entity));
+                if (entity == null)
+                {
+                    throw new ArgumentNullException(nameof(entity));
+                }
+                _context.Add(entity);
+                await _context.SaveChangesAsync();
             }
-            _context.Add(entity);
-            await _context.SaveChangesAsync();
+            catch(ArgumentNullException)
+            {
+                throw;
+            }
+            catch(DbUpdateException)
+            {
+                throw;
+            }
         }
 
         public async Task AddRange(IEnumerable<T> entities)
         {
-            _context.Set<T>().AddRange(entities);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Set<T>().AddRange(entities);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                throw;
+            }
         }
 
         public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> expression)
         {
-            return await Task.Run(() => _context.Set<T>().Where(expression));
+            try
+            {
+                return await Task.Run(() => _context.Set<T>().Where(expression));
+            }
+            catch(DbUpdateException)
+            {
+                throw;
+            }
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await Task.Run(() => _context.Set<T>().ToList());
+            try
+            {
+                return await Task.Run(() => _context.Set<T>().ToList());
+            }
+            catch(DbUpdateException)
+            {
+                throw;
+            }
         }
 
         public async Task<T> GetByIdAsync(int id)
         {
-            var found = await _context.Set<T>().FindAsync(id);
-            if (found == null)
+            try
             {
-                throw new ArgumentException(nameof(id));
+                var found = await _context.Set<T>().FindAsync(id);
+                if (found == null)
+                {
+                    throw new ArgumentException(nameof(id));
+                }
+                return await Task.Run(() => found);
             }
-            return await Task.Run(() => found);
+            catch(ArgumentException)
+            {
+                throw;
+            }
+            catch(DbUpdateException)
+            {
+                throw;
+            }
         }
 
         public async Task Remove(T entity)
         {
-            await Task.Run(() => _context.Set<T>().Remove(entity));
+            try
+            {
+                await Task.Run(() => _context.Set<T>().Remove(entity));
+            }
+            catch(DbUpdateException)
+            {
+                throw;
+            }
         }
 
         public async Task RemoveRange(IEnumerable<T> entities)
         {
-            await Task.Run(() => _context.RemoveRange(entities));
+            try
+            {
+                await Task.Run(() => _context.RemoveRange(entities));
+            }
+            catch(DbUpdateException)
+            {
+                throw;
+            }
         }
     }
 }

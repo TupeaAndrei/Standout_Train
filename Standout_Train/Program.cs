@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Standout_Train.DAL.AppRepository;
 using Standout_Train.DAL.Context;
 using Standout_Train.DAL.Interfaces;
 using Standout_Train.Data;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,9 +21,12 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<TrainContext>(options =>
     options.UseSqlServer(connectionString));
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
 #region Repositories
-builder.Services.AddTransient(typeof(IRepository<>), typeof(IRepository<>));
-builder.Services.AddTransient<ITrainRepository, ITrainRepository>();
+builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddTransient<ITrainRepository, TrainRepository>();
 #endregion
 
 var app = builder.Build();

@@ -1,4 +1,5 @@
-﻿using Standout_Train.DAL.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using Standout_Train.DAL.Context;
 using Standout_Train.DAL.Interfaces;
 using Standout_Train.DAL.Models;
 using System;
@@ -17,12 +18,21 @@ namespace Standout_Train.DAL.AppRepository
         }
         public async Task<IEnumerable<Train>> GetAllTrainsThatStartFromCity(string city)
         {
-            return await Task.Run(() => _context.Train.Where(t => t.DepartureCity.Equals(city)).ToList());
+
+            try
+            {
+                return await Task.Run(() => _context.Train.Where(t => t.DepartureCity.Equals(city)).ToList());
+            }
+            catch (DbUpdateException) { throw; }
         }
 
         public async Task<IEnumerable<Train>> GetAllTrainsThatStopInCity(string city)
         {
-            return await Task.Run(() => _context.Train.Where(t => t.ArrivalCity.Equals(city)).ToList());
+            try
+            {
+                return await Task.Run(() => _context.Train.Where(t => t.ArrivalCity.Equals(city)).ToList());
+            }
+            catch (DbUpdateException) { throw; }
         }
     }
 }

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Standout_Train.DAL\Standout_Train.DAL.csproj" />
+  </ItemGroup>
+
 </Project>
