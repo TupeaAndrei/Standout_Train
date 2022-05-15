@@ -120,5 +120,27 @@ namespace Standout_Train.DAL.AppRepository
                 throw;
             }
         }
+
+        public async Task<T> Update(int id,T entity)
+        {
+            try
+            {
+                var found = await GetByIdAsync(id);
+                if (found  == null)
+                {
+                    throw new ArgumentException(nameof(entity.Id));
+                }
+                found = entity;
+                return found;
+            }
+            catch(ArgumentException)
+            {
+                throw;
+            }
+            catch(DbUpdateException)
+            {
+                throw;
+            }
+        }
     }
 }

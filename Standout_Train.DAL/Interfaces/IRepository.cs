@@ -16,5 +16,6 @@ namespace Standout_Train.DAL.Interfaces
         Task AddRange(IEnumerable<T> entities);
         Task Remove(T entity);
         Task RemoveRange(IEnumerable<T> entities);
+        Task<T> Update(int id,T entity);
     }
 }

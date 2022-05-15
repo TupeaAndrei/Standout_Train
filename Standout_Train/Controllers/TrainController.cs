@@ -21,7 +21,7 @@ namespace Standout_Train.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<TrainDTO>> GetTrainById(int id)
+        public async Task<ActionResult<TrainDTO>> GetTrainById([FromRoute]int id)
         {
             TrainDTO train = new();
             try
@@ -35,9 +35,126 @@ namespace Standout_Train.Controllers
             }
             return Json(train);
         }
-        public IActionResult Index()
+
+       
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTrain([FromRoute]int id)
         {
-            return View();
+            try
+            {
+                var train = await unitOfWork.Trains.GetByIdAsync(id);
+                await unitOfWork.Trains.Remove(train);
+            }
+            catch(ArgumentException)
+            {
+                return NotFound();
+            }
+            catch(DbUpdateException)
+            {
+                return BadRequest();
+            }
+            return Ok();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetTrains()
+        {
+            List<TrainDTO> dtos = new();
+            try
+            {
+                dtos = _mapper.Map<List<TrainDTO>>(await unitOfWork.Trains.GetAllAsync());
+            }
+            catch(DbUpdateException)
+            {
+                return BadRequest();
+            }
+
+            return Json(dtos);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateTrain([FromRoute]int id,[FromBody]TrainDTO trainDTO)
+        {
+            if (id < 0)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                var train = await unitOfWork.Trains.GetByIdAsync(id);
+                if (train == null)
+                {
+                    return NotFound();
+                }
+                var entity = _mapper.Map<Train>(trainDTO);
+                await unitOfWork.Trains.Update(id, entity);
+            }
+            catch(ArgumentException)
+            {
+                return NotFound();
+            }
+            catch(DbUpdateException)
+            {
+                return BadRequest();
+            }
+            return Json(trainDTO);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateTrain([FromBody]TrainDTO trainDTO)
+        {
+            try
+            {
+                if (trainDTO == null)
+                {
+                    return BadRequest();
+                }
+                var entity = _mapper.Map<Train>(trainDTO);
+                await unitOfWork.Trains.AddAsync(entity);
+            }
+            catch(DbUpdateException)
+            {
+                throw;
+            }
+            return Ok();
+        }
+
+        [HttpGet("{city}")]
+        public async Task<IActionResult> StartInCity([FromRoute]string city)
+        {
+            try
+            {
+                if (city == null)
+                {
+                    return BadRequest();
+                }
+                IEnumerable<Train>? results = await unitOfWork.Trains.GetAllTrainsThatStartFromCity(city);
+                List<TrainDTO> trains = _mapper.Map<List<TrainDTO>>(results);
+                return Json(trains);
+                
+            }catch(DbUpdateException)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("{city}")]
+        public async Task<IActionResult> EndInCity([FromRoute]string city)
+        {
+            try
+            {
+                if (city == null)
+                {
+                    return BadRequest();
+                }
+                IEnumerable<Train>? results = await unitOfWork.Trains.GetAllTrainsThatStopInCity(city);
+                List<TrainDTO> trains = _mapper.Map<List<TrainDTO>>(results);
+                return Json(trains);
+            }catch(DbUpdateException ex)
+            {
+                return BadRequest(ex);
+            }
         }
     }
 }

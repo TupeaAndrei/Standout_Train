@@ -5,6 +5,10 @@ using Standout_Train.DAL.Context;
 using Standout_Train.DAL.Interfaces;
 using Standout_Train.Data;
 using AutoMapper;
+using Swashbuckle;
+using Microsoft.OpenApi.Models;
+using Standout_Train.BL.Interfaces;
+using Standout_Train.BL.Classes;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,11 +27,19 @@ builder.Services.AddDbContext<TrainContext>(options =>
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 
 #region Repositories
 builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<ITrainRepository, TrainRepository>();
+builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
 #endregion
+
+
 
 var app = builder.Build();
 
@@ -35,6 +47,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+        {
+            options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+            options.RoutePrefix = String.Empty;
+        });
 }
 else
 {
@@ -51,6 +69,11 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapRazorPages();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+
+//app.MapRazorPages();
 
 app.Run();

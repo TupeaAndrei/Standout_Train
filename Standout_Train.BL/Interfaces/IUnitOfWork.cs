@@ -9,7 +9,14 @@ namespace Standout_Train.BL.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
+        IAchievmentRepository Achievments { get; }
+        ICountyRepository County { get; }
+        ISocietyRepository Society { get; }
+        IStationRepository Stations { get; }
+        ITicketRepository Tickets { get; }
+        ITrainStationRepository TrainStations { get; }
         ITrainRepository Trains { get; }
+        ICustomerRepository Customers { get; }
         Task<int> Complete();
     }
 }
