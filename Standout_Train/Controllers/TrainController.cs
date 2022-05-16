@@ -21,7 +21,7 @@ namespace Standout_Train.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<TrainDTO>> GetTrainById([FromRoute]int id)
+        public async Task<IActionResult> GetTrainById([FromRoute]int id)
         {
             TrainDTO train = new();
             try
@@ -120,16 +120,16 @@ namespace Standout_Train.Controllers
             return Ok();
         }
 
-        [HttpGet("{city}")]
-        public async Task<IActionResult> StartInCity([FromRoute]string city)
+        [HttpGet("{startCity}")]
+        public async Task<IActionResult> StartInCity([FromRoute]string startCity)
         {
             try
             {
-                if (city == null)
+                if (startCity == null)
                 {
                     return BadRequest();
                 }
-                IEnumerable<Train>? results = await unitOfWork.Trains.GetAllTrainsThatStartFromCity(city);
+                IEnumerable<Train>? results = await unitOfWork.Trains.GetAllTrainsThatStartFromCity(startCity);
                 List<TrainDTO> trains = _mapper.Map<List<TrainDTO>>(results);
                 return Json(trains);
                 
@@ -139,16 +139,16 @@ namespace Standout_Train.Controllers
             }
         }
 
-        [HttpGet("{city}")]
-        public async Task<IActionResult> EndInCity([FromRoute]string city)
+        [HttpGet("{endCity}")]
+        public async Task<IActionResult> EndInCity([FromRoute]string endCity)
         {
             try
             {
-                if (city == null)
+                if (endCity == null)
                 {
                     return BadRequest();
                 }
-                IEnumerable<Train>? results = await unitOfWork.Trains.GetAllTrainsThatStopInCity(city);
+                IEnumerable<Train>? results = await unitOfWork.Trains.GetAllTrainsThatStopInCity(endCity);
                 List<TrainDTO> trains = _mapper.Map<List<TrainDTO>>(results);
                 return Json(trains);
             }catch(DbUpdateException ex)

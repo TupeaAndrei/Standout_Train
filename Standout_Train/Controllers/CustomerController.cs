@@ -107,15 +107,15 @@ namespace Standout_Train.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetAchievments([FromRoute]int id)
+        [HttpGet("{custId}")]
+        public async Task<IActionResult> GetAchievments([FromRoute]int custId)
         {
             try
             {
-                Customer? result = await _unitOfWork.Customers.GetByIdAsync(id);
+                Customer? result = await _unitOfWork.Customers.GetByIdAsync(custId);
                 if (result == null)
                 {
-                    throw new ArgumentException(null,nameof(id));
+                    throw new ArgumentException(null,nameof(custId));
                 }
                 List<Achievments>? achievments = await _unitOfWork.Customers.GetUserAchievments(result);
                 List<AchievmentsDTO> results = _mapper.Map<List<AchievmentsDTO>>(achievments);
