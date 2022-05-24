@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Standout_Train.BL.Interfaces;
@@ -20,6 +21,7 @@ namespace Standout_Train.Controllers
             _unitOfWork = unitOfWork;
         }
 
+       
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
