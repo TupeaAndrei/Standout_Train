@@ -28,12 +28,12 @@ namespace Standout_Train.Controllers
             {
                 train = _mapper.Map<TrainDTO>(await unitOfWork.Trains.GetByIdAsync(id));
                 await unitOfWork.Complete();
+                return Json(train);
             }
             catch (DbUpdateException)
             {
                 return NotFound();
             }
-            return Json(train);
         }
 
        

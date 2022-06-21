@@ -120,7 +120,7 @@ namespace Standout_Train.Controllers
                     throw new ArgumentException(null,nameof(custId));
                 }
                 List<Achievments>? achievments = await _unitOfWork.Customers.GetUserAchievments(result);
-                List<AchievmentsDTO> results = _mapper.Map<List<AchievmentsDTO>>(achievments);
+                List<ReportDTO> results = _mapper.Map<List<ReportDTO>>(achievments);
                 return Json(results);
             }
             catch(DbUpdateException ex)

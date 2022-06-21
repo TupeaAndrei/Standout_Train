@@ -8,7 +8,7 @@ namespace Standout_Train.Profiles
     {
         public AutoMapperProfile()
         {
-            CreateMap<Achievments, AchievmentsDTO>().ReverseMap();
+            CreateMap<Achievments, ReportDTO>().ReverseMap();
             CreateMap<County,CountyDTO>().ReverseMap();
             CreateMap<Customer, CustomerDTO>().ReverseMap();
             CreateMap<Society, SocietyDTO>().ReverseMap();
@@ -16,6 +16,7 @@ namespace Standout_Train.Profiles
             CreateMap<Ticket, TicketDTO>().ReverseMap();
             CreateMap<Train, TrainDTO>().ReverseMap();
             CreateMap<TrainStation, TrainStationDTO>().ReverseMap();
+            CreateMap<Report, ReportDTO>().ReverseMap();
         }
     }
 }

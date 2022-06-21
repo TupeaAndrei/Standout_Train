@@ -21,12 +21,12 @@ namespace Standout_Train.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTrainById([FromRoute] int id)
+        public async Task<IActionResult> GetAchievmentById([FromRoute] int id)
         {
-            AchievmentsDTO achievment = new();
+            ReportDTO achievment = new();
             try
             {
-                achievment = _mapper.Map<AchievmentsDTO>(await unitOfWork.Achievments.GetByIdAsync(id));
+                achievment = _mapper.Map<ReportDTO>(await unitOfWork.Achievments.GetByIdAsync(id));
                 await unitOfWork.Complete();
             }
             catch (DbUpdateException)
@@ -62,8 +62,8 @@ namespace Standout_Train.Controllers
         {
             try
             {
-                List<AchievmentsDTO> dtos = new();
-                dtos = _mapper.Map<List<AchievmentsDTO>>(await unitOfWork.Achievments.GetAllAsync());
+                List<ReportDTO> dtos = new();
+                dtos = _mapper.Map<List<ReportDTO>>(await unitOfWork.Achievments.GetAllAsync());
                 return Json(dtos);
             }
             catch (DbUpdateException ex)
@@ -73,7 +73,7 @@ namespace Standout_Train.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] AchievmentsDTO achievmentDTO)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] ReportDTO achievmentDTO)
         {
             if (id < 0)
             {
@@ -101,7 +101,7 @@ namespace Standout_Train.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] AchievmentsDTO achievmentDTO)
+        public async Task<IActionResult> Create([FromBody] ReportDTO achievmentDTO)
         {
             try
             {

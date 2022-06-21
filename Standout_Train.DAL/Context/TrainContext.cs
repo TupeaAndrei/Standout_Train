@@ -306,6 +306,164 @@ namespace Standout_Train.DAL.Context
                     Id = 39,
                     Name = "VN (Vrancea)"
                 });
+            modelBuilder.Entity<Station>().HasData(
+                new Station
+                {
+                    Id = 1,
+                    CountyId = 35,
+                    Name = "Anina"
+                },
+                new Station
+                {
+                    Id = 2,
+                    CountyId = 25,
+                    Name = "Banca"
+                },
+                new Station
+                {
+                    Id = 3,
+                    CountyId = 25,
+                    Name = "Bicaz"
+                },
+                new Station
+                {
+                    Id = 4,
+                    Name = "Botosani",
+                    CountyId = 25,
+                },
+                new Station
+                {
+                    Id = 5,
+                    CountyId = 19,
+                    Name = "Asau"
+                },
+                new Station
+                {
+                    Id = 6,
+                    CountyId = 19,
+                    Name = "Barbosi"
+                },
+                new Station
+                {
+                    Id = 7,
+                    CountyId = 19,
+                    Name = "Berca"
+                },
+                new Station
+                {
+                    Id = 8,
+                    CountyId = 15,
+                    Name = "Constanta"
+                },
+                new Station
+                {
+                    Id = 9,
+                    CountyId = 15,
+                    Name = "Costinesti"
+                },
+                new Station
+                {
+                    Id = 10,
+                    CountyId = 14,
+                    Name = "Beius"
+                },
+                new Station
+                {
+                    Id = 11,
+                    CountyId = 14,
+                    Name = "Benesat"
+                },
+                new Station
+                {
+                    Id = 12,
+                    CountyId = 14,
+                    Name = "Boju"
+                },
+                new Station
+                {
+                    Id = 13,
+                    CountyId = 1,
+                    Name = "Azuga"
+                },
+                new Station
+                {
+                    Id = 14,
+                    CountyId = 1,
+                    Name = "Armasesti"
+                },
+                new Station
+                {
+                    Id = 15,
+                    CountyId = 1,
+                    Name = "Bucuresti Baneasa"
+                },
+                new Station
+                {
+                    Id = 16,
+                    CountyId = 1,
+                    Name = "Bucuresti Grivita"
+                },
+                new Station
+                {
+                    Id = 17,
+                    CountyId = 1,
+                    Name = "Bucuresti nord"
+                },
+                new Station
+                {
+                    Id = 18,
+                    CountyId = 1,
+                    Name = "Bucuresti Vest"
+                },
+                new Station
+                {
+                    Id = 19,
+                    CountyId = 1,
+                    Name = "Bucuresti sud"
+                },
+                new Station
+                {
+                    Id = 20,
+                    CountyId = 9,
+                    Name = "Aiud"
+                },
+                new Station
+                {
+                    Id = 21,
+                    CountyId = 9,
+                    Name = "Augustin"
+                },
+                new Station
+                {
+                    Id = 22,
+                    CountyId = 9,
+                    Name = "Brasov"
+                },
+                new Station
+                {
+                    Id = 23,
+                    CountyId = 9,
+                    Name = "Cata"
+                },
+                new Station
+                {
+                    Id = 24,
+                    CountyId = 9,
+                    Name = "Cristian"
+                },
+                new Station
+                {
+                    Id = 25,
+                    CountyId = 9,
+                    Name = "Fagaras"
+                },
+                new Station
+                {
+                    Id = 26,
+                    CountyId = 9,
+                    Name = "Ghimbav"
+                }
+                );
 
         }
     }

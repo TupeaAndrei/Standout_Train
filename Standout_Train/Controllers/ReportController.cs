@@ -7,33 +7,33 @@ using Standout_Train.TL.DTOs;
 
 namespace Standout_Train.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-    public class SocietyController : Controller
+    [Route("api/[controller]")]
+    public class ReportController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper _mapper;
 
-        public SocietyController(IUnitOfWork unitOfWork, IMapper mapper)
+        public ReportController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetSocietyById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            SocietyDTO society = new();
+            ReportDTO report = new();
             try
             {
-                society = _mapper.Map<SocietyDTO>(await unitOfWork.Society.GetByIdAsync(id));
+                report = _mapper.Map<ReportDTO>(await unitOfWork.Reports.GetByIdAsync(id));
                 await unitOfWork.Complete();
-                return Json(society);
             }
             catch (DbUpdateException)
             {
                 return NotFound();
             }
+            return Json(report);
         }
 
 
@@ -43,8 +43,8 @@ namespace Standout_Train.Controllers
         {
             try
             {
-                DAL.Models.Society? society = await unitOfWork.Society.GetByIdAsync(id);
-                await unitOfWork.Society.Remove(society);
+                DAL.Models.Report? reports = await unitOfWork.Reports.GetByIdAsync(id);
+                await unitOfWork.Reports.Remove(reports);
                 return Ok();
             }
             catch (ArgumentException ag)
@@ -62,8 +62,8 @@ namespace Standout_Train.Controllers
         {
             try
             {
-                List<SocietyDTO> dtos = new();
-                dtos = _mapper.Map<List<SocietyDTO>>(await unitOfWork.Society.GetAllAsync());
+                List<ReportDTO> dtos = new();
+                dtos = _mapper.Map<List<ReportDTO>>(await unitOfWork.Reports.GetAllAsync());
                 return Json(dtos);
             }
             catch (DbUpdateException ex)
@@ -73,7 +73,7 @@ namespace Standout_Train.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] SocietyDTO societyDTO)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] ReportDTO reportDTO)
         {
             if (id < 0)
             {
@@ -81,13 +81,13 @@ namespace Standout_Train.Controllers
             }
             try
             {
-                DAL.Models.Society? society = await unitOfWork.Society.GetByIdAsync(id);
-                if (society == null)
+                DAL.Models.Report? report = await unitOfWork.Reports.GetByIdAsync(id);
+                if (report == null)
                 {
                     return NotFound();
                 }
-                Society? entity = _mapper.Map<Society>(societyDTO);
-                await unitOfWork.Society.Update(id, entity);
+                Report? entity = _mapper.Map<Report>(reportDTO);
+                await unitOfWork.Reports.Update(id, entity);
                 return Json(entity);
             }
             catch (ArgumentException ag)
@@ -101,16 +101,16 @@ namespace Standout_Train.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] SocietyDTO societyDTO)
+        public async Task<IActionResult> Create([FromBody] ReportDTO reportDTO)
         {
             try
             {
-                if (societyDTO == null)
+                if (reportDTO == null)
                 {
                     return BadRequest();
                 }
-                var entity = _mapper.Map<Society>(societyDTO);
-                await unitOfWork.Society.AddAsync(entity);
+                var entity = _mapper.Map<Report>(reportDTO);
+                await unitOfWork.Reports.AddAsync(entity);
                 return Ok();
             }
             catch (DbUpdateException ex)

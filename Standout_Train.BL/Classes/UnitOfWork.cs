@@ -25,6 +25,7 @@ namespace Standout_Train.BL.Classes
             Stations = new StationRepository(_context);
             Tickets = new TicketRepository(_context);
             TrainStations = new TrainStationRepository(_context);
+            Reports  = new ReportRepository(_context);
         }
         public IAchievmentRepository Achievments { get; private set; }
         public ICountyRepository County { get; private set; }
@@ -34,6 +35,7 @@ namespace Standout_Train.BL.Classes
         public ITrainStationRepository TrainStations { get; private set; }
         public ITrainRepository Trains { get; private set; }
         public ICustomerRepository Customers { get; private set; }
+        public IReportRepository Reports { get; private set; }
 
         public async Task<int> Complete()
         {

@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Standout_Train", "Standout_Train\Standout_Train.csproj", "{6BF33332-CEAD-4EB0-9E58-D1255B51EF23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Standout_Train", "Standout_Train\Standout_Train.csproj", "{6BF33332-CEAD-4EB0-9E58-D1255B51EF23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Standout_Train.BL", "Standout_Train.BL\Standout_Train.BL.csproj", "{24A2547A-F15E-4BF0-B51E-DFCE6282E4F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Standout_Train.BL", "Standout_Train.BL\Standout_Train.BL.csproj", "{24A2547A-F15E-4BF0-B51E-DFCE6282E4F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Standout_Train.DAL", "Standout_Train.DAL\Standout_Train.DAL.csproj", "{FB664C06-F210-4B9E-8B3F-DA0EC7CCEE04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Standout_Train.DAL", "Standout_Train.DAL\Standout_Train.DAL.csproj", "{FB664C06-F210-4B9E-8B3F-DA0EC7CCEE04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Standout_Train.TL", "Standout_Train.TL\Standout_Train.TL.csproj", "{B8112C4A-0042-4DC7-93DC-935D67305EB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Standout_Train.TL", "Standout_Train.TL\Standout_Train.TL.csproj", "{B8112C4A-0042-4DC7-93DC-935D67305EB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Standout_Train.Tests", "Standout_Train.Tests\Standout_Train.Tests.csproj", "{915FDF49-B915-4970-9BD8-A2A4DA27F303}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B8112C4A-0042-4DC7-93DC-935D67305EB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8112C4A-0042-4DC7-93DC-935D67305EB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8112C4A-0042-4DC7-93DC-935D67305EB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{915FDF49-B915-4970-9BD8-A2A4DA27F303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{915FDF49-B915-4970-9BD8-A2A4DA27F303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{915FDF49-B915-4970-9BD8-A2A4DA27F303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{915FDF49-B915-4970-9BD8-A2A4DA27F303}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

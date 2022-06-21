@@ -21,7 +21,7 @@ namespace Standout_Train.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTrainById([FromRoute] int id)
+        public async Task<IActionResult> GetStationById([FromRoute] int id)
         {
             StationDTO station = new();
             try

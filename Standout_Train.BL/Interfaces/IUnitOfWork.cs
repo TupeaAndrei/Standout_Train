@@ -17,6 +17,7 @@ namespace Standout_Train.BL.Interfaces
         ITrainStationRepository TrainStations { get; }
         ITrainRepository Trains { get; }
         ICustomerRepository Customers { get; }
+        IReportRepository Reports { get; }
         Task<int> Complete();
     }
 }
