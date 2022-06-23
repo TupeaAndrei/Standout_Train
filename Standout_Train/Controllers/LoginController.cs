@@ -23,7 +23,7 @@ namespace Standout_Train.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(loginViewModel.Email, loginViewModel.Password, loginViewModel.RememberMe, false);
+                Microsoft.AspNetCore.Identity.SignInResult? result = await _signInManager.PasswordSignInAsync(loginViewModel.Email, loginViewModel.Password, loginViewModel.RememberMe, false);
                 if (result.Succeeded)
                 {
                     return Ok();
@@ -34,21 +34,6 @@ namespace Standout_Train.Controllers
             return BadRequest("Invalid login attempt");
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetConnectedUser()
-        {
-            try
-            {
-                string? userEmail = User.FindFirstValue(ClaimTypes.Email);
-                if (string.IsNullOrEmpty(userEmail))
-                {
-                    return NotFound();
-                }
-                return Json(userEmail);
-            }catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        
     }
 }

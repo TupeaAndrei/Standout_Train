@@ -6,6 +6,7 @@ using Standout_Train.BL.Interfaces;
 using Standout_Train.DAL.Models;
 using Standout_Train.TL.DTOs;
 using Standout_Train.ViewModels;
+using System.Security.Claims;
 
 namespace Standout_Train.Controllers
 {
@@ -49,7 +50,8 @@ namespace Standout_Train.Controllers
                         {
                             FirstName = registerViewModel.FirstName,
                             EmailAdress = registerViewModel.Email,
-                            Age = registerViewModel.Age
+                            Age = registerViewModel.Age,
+                            LastName = registerViewModel.LastName,
                         };
                         await _unitOfWork.Customers.AddAsync(_mapper.Map<Customer>(dto));
                         return Ok();
@@ -62,11 +64,29 @@ namespace Standout_Train.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("{out}")]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return Ok();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetConnectedUser()
+        {
+            try
+            {
+                string? userEmail = User.FindFirstValue(ClaimTypes.Email);
+                if (string.IsNullOrEmpty(userEmail))
+                {
+                    return NotFound();
+                }
+                return Json(this.User.Identity?.Name);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

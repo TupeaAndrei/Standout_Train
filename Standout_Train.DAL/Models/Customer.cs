@@ -15,9 +15,9 @@ namespace Standout_Train.DAL.Models
         [Required]
         [EmailAddress]
         public string EmailAdress { get; set; }
-        public string Adress { get; set; }
-        public string ZipCode { get; set; }
-        public string PhoneNumber { get; set; }
-        public int LoyaltyPoints { get; set; }
+        public string? Adress { get; set; }
+        public string? ZipCode { get; set; }
+        public string? PhoneNumber { get; set; }
+        public int? LoyaltyPoints { get; set; }
     }
 }

@@ -18,7 +18,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<IdentityUser>(options => { options.SignIn.RequireConfirmedAccount = true;
+    options.Password.RequireNonAlphanumeric = false;
+})
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
 
@@ -33,6 +35,8 @@ builder.Services.AddSwaggerGen(c =>
     {
         c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
     });
+
+builder.Services.AddCors();
 
 
 #region Repositories
@@ -51,6 +55,9 @@ if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
     app.UseSwagger();
+    app.UseCors(opt => {
+        opt.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+        });
     app.UseSwaggerUI(options =>
         {
             options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
