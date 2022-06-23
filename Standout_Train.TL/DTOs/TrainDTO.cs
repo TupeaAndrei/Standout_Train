@@ -12,8 +12,8 @@ namespace Standout_Train.TL.DTOs
         public string Name { get; set; }
         public string Type { get; set; }
         public int Number { get; set; }
-        public DateTime DepartureTime { get; set; }
-        public DateTime ArrivalTime { get; set; }
+        public TimeSpan DepartureTime { get; set; }
+        public TimeSpan ArrivalTime { get; set; }
         public string DepartureCity { get; set; }
         public string ArrivalCity { get; set; }
         public double RouteDistance { get; set; }

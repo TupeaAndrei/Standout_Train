@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Standout_Train.ViewModels;
+using System.Security.Claims;
 
 namespace Standout_Train.Controllers
 {
@@ -31,6 +32,23 @@ namespace Standout_Train.Controllers
                 return BadRequest("Invalid login Attempt");
             }
             return BadRequest("Invalid login attempt");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetConnectedUser()
+        {
+            try
+            {
+                string? userEmail = User.FindFirstValue(ClaimTypes.Email);
+                if (string.IsNullOrEmpty(userEmail))
+                {
+                    return NotFound();
+                }
+                return Json(userEmail);
+            }catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

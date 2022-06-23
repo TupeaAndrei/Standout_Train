@@ -70,7 +70,7 @@ namespace Standout_Train.Controllers
                 return BadRequest();
             }
 
-            return Json(dtos);
+            return Ok(dtos);
         }
 
         [HttpPut("{id}")]
@@ -120,7 +120,7 @@ namespace Standout_Train.Controllers
             return Ok();
         }
 
-        [HttpGet("{startCity}")]
+        [HttpGet("/cities/{startCity}")]
         public async Task<IActionResult> StartInCity([FromRoute]string startCity)
         {
             try
@@ -139,7 +139,7 @@ namespace Standout_Train.Controllers
             }
         }
 
-        [HttpGet("{endCity}")]
+        [HttpGet("/cities/{endCity}")]
         public async Task<IActionResult> EndInCity([FromRoute]string endCity)
         {
             try

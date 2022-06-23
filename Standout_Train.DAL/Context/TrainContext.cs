@@ -464,6 +464,124 @@ namespace Standout_Train.DAL.Context
                     Name = "Ghimbav"
                 }
                 );
+            modelBuilder.Entity<Train>().HasData(
+                new Train
+                {
+                    Id = 1,
+                    Name = "IRN1941",
+                    DepartureCity = "Brasov",
+                    ArrivalCity = "Bucuresti",
+                    DepartureTime = new TimeSpan(1,17,0),
+                    ArrivalTime = new TimeSpan(3,58,0),
+                    Number = 1941,
+                    SocietyId = 3,
+                    RouteDistance = 165,
+                    Type = "IRN"
+                },
+                new Train
+                {
+                    Id = 2,
+                    Name = "IRN1932",
+                    DepartureCity = "Brasov",
+                    ArrivalCity = "Bucuresti",
+                    DepartureTime = new TimeSpan(2, 22, 0),
+                    ArrivalTime = new TimeSpan(5, 5, 0),
+                    Number = 1932,
+                    SocietyId = 3,
+                    RouteDistance = 165,
+                    Type = "IRN"
+                },
+                 new Train
+                 {
+                     Id = 3,
+                     Name = "IR1734",
+                     DepartureCity = "Brasov",
+                     ArrivalCity = "Bucuresti",
+                     DepartureTime = new TimeSpan(16, 56, 0),
+                     ArrivalTime = new TimeSpan(19, 34, 0),
+                     Number = 1734,
+                     SocietyId = 1,
+                     RouteDistance = 166,
+                     Type = "IR"
+                 },
+                 new Train
+                 {
+                     Id = 4,
+                     Name = "R-E11536",
+                     DepartureCity = "Brasov",
+                     ArrivalCity = "Bucuresti",
+                     DepartureTime = new TimeSpan(17, 25, 0),
+                     ArrivalTime = new TimeSpan(19, 58, 0),
+                     Number = 1136,
+                     SocietyId = 4,
+                     RouteDistance = 166,
+                     Type = "R-E"
+                 },
+                 new Train
+                 {
+                     Id = 5,
+                     Name = "R-E11538",
+                     DepartureCity = "Brasov",
+                     ArrivalCity = "Bucuresti",
+                     DepartureTime = new TimeSpan(18, 38, 0),
+                     ArrivalTime = new TimeSpan(21, 13, 0),
+                     Number = 11538,
+                     SocietyId = 4,
+                     RouteDistance = 166,
+                     Type = "R-E"
+                 },
+                  new Train
+                  {
+                      Id = 6,
+                      Name = "IRN1941",
+                      DepartureCity = "Brasov",
+                      ArrivalCity = "Constanta",
+                      DepartureTime = new TimeSpan(1, 8, 0),
+                      ArrivalTime = new TimeSpan(6, 29, 0),
+                      Number = 1941,
+                      SocietyId = 1,
+                      RouteDistance = 383,
+                      Type = "IRN"
+                  },
+                   new Train
+                   {
+                       Id = 7,
+                       Name = "IRN1884",
+                       DepartureCity = "Brasov",
+                       ArrivalCity = "Constanta",
+                       DepartureTime = new TimeSpan(7, 12, 0),
+                       ArrivalTime = new TimeSpan(11,32,0),
+                       Number = 1884,
+                       SocietyId = 1,
+                       RouteDistance = 390,
+                       Type = "IRN"
+                   },
+                    new Train
+                    {
+                        Id = 8,
+                        Name = "IRN1741",
+                        DepartureCity = "Brasov",
+                        ArrivalCity = "Bucuresti",
+                        DepartureTime = new TimeSpan(18, 38, 0),
+                        ArrivalTime = new TimeSpan(7, 10, 0),
+                        Number = 1741,
+                        SocietyId = 1,
+                        RouteDistance = 649,
+                        Type = "IRN"
+                    },
+                     new Train
+                     {
+                         Id = 9,
+                         Name = "IR1623",
+                         DepartureCity = "Bucuresti",
+                         ArrivalCity = "Sibiu",
+                         DepartureTime = new TimeSpan(9, 55, 0),
+                         ArrivalTime = new TimeSpan(15, 41, 0),
+                         Number = 1623,
+                         SocietyId = 1,
+                         RouteDistance = 315,
+                         Type = "IR"
+                     });
 
         }
     }

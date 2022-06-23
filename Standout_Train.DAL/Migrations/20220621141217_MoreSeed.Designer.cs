@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Standout_Train.DAL.Context;
 
@@ -11,9 +12,10 @@ using Standout_Train.DAL.Context;
 namespace Standout_Train.DAL.Migrations
 {
     [DbContext(typeof(TrainContext))]
-    partial class TrainContextModelSnapshot : ModelSnapshot
+    [Migration("20220621141217_MoreSeed")]
+    partial class MoreSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
